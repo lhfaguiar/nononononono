@@ -1,8 +1,7 @@
 from pprint import pprint
 import pygame as pg
 
-pprint(pg.color.THECOLORS)
-{'aliceblue': (240, 248, 255, 255),
+colors = {'aliceblue': (240, 248, 255, 255),
 'antiquewhite': (250, 235, 215, 255),
 'antiquewhite1': (255, 239, 219, 255),
 'antiquewhite2': (238, 223, 204, 255),
