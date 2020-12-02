@@ -1,7 +1,7 @@
 from pprint import pprint
 import pygame as pg
 
-from class.car import Car
+from coisas.car import Car
 
 pg.init()
 
