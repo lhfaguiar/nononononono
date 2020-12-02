@@ -1,65 +1,60 @@
 from pprint import pprint
 import pygame as pg
+import random
 
 from coisas.car import Car
 
 pg.init()
-
-# Define game colors
-PINK = (0, 0.54, 0.226, 0.063)
-WHITE = ( 255, 255, 255)
-BLUE = (0,255,255)
-BLACK = ( 255, 0, 0)
-
-# Open a new window
-size = (700, 500)
-screen = pg.display.set_mode(size)
-pg.display.set_caption("My First Game")
-
-
-# The loop will carry on until the user exit the game (e.g. clicks the close button).
-carryOn = True
  
-# The clock will be used to control how fast the screen updates
-clock = pg.time.Clock()
-  	
-playerCar = Car(BLUE, 20, 30)
-
+GREEN = (20, 255, 140)
+GREY = (210, 210 ,210)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+PURPLE = (255, 0, 255)
+        
+SCREENWIDTH=400
+SCREENHEIGHT=500
+ 
+size = (SCREENWIDTH, SCREENHEIGHT)
+screen = pg.display.set_mode(size)
+pg.display.set_caption("Car Racing")
+ 
+#This will be a list that will contain all the sprites we intend to use in our game.
+all_sprites_list = pg.sprite.Group()
+ 
+playerCar = Car(RED, 20, 30)
 playerCar.rect.x = 200
 playerCar.rect.y = 300
-	
-player1Car = Car(BLACK, 20, 30)
-player1Car.rect.x = 200
-player1Car.rect.y = 300
-
-
-player2Car = Car(WHITE, 20, 30)
-player2Car.rect.x = 400
-player2Car.rect.y = 400
-
-# -------- Main Program Loop -----------
-while carryOn:
-    # --- Main event loop
-    for event in pg.event.get(): # User did something
-        if event.type == pg.QUIT: # If user clicked close
-              carryOn = False # Flag that we are done so we exit this loop
  
-    # --- Game logic should go here
-
-    # --- Drawing code should go here
-    # First, clear the screen to white. 
-    screen.fill(WHITE)
-    #The you can draw different shapes and lines or add text to your background stage.
-    pg.draw.rect(screen, RED, [55, 200, 100, 70],0)
-    pg.draw.line(screen, GREEN, [0, 0], [100, 100], 5)
-    pg.draw.ellipse(screen, BLACK, [20,20,250,100], 2)
-
-
-    # --- Go ahead and update the screen with what we've drawn.
-    pg.display.flip()
-    
-    # --- Limit to 60 frames per second
-    clock.tick(60)
-
-#Once we have exited the main program loop we can stop the game engine:
+# Add the car to the list of objects
+all_sprites_list.add(playerCar)
+ 
+#Allowing the user to close the window...
+carryOn = True
+clock=pg.time.Clock()
+ 
+while carryOn:
+        for event in pg.event.get():
+            if event.type==pg.QUIT:
+                carryOn=False
+                
+        #Game Logic
+        all_sprites_list.update()
+ 
+        #Drawing on Screen
+        screen.fill(GREEN)
+        #Draw The Road
+        pg.draw.rect(screen, GREY, [40,0, 200,300])
+        #Draw Line painting on the road
+        pg.draw.line(screen, WHITE, [140,0],[140,300],5)
+        
+        #Now let's draw all the sprites in one go. (For now we only have 1 sprite!)
+        all_sprites_list.draw(screen)
+ 
+        #Refresh Screen
+        pg.display.flip()
+ 
+        #Number of frames per secong e.g. 60
+        clock.tick(60)
+ 
 pg.quit()
