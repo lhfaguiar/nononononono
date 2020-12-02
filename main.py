@@ -1,13 +1,14 @@
 from pprint import pprint
 import pygame as pg
 
-pg.init()
+from class.car import Car
 
+pg.init()
 
 # Define game colors
 PINK = (0, 0.54, 0.226, 0.063)
 WHITE = ( 255, 255, 255)
-BLUE = ((0,255,255))
+BLUE = (0,255,255)
 BLACK = ( 255, 0, 0)
 
 # Open a new window
@@ -21,7 +22,21 @@ carryOn = True
  
 # The clock will be used to control how fast the screen updates
 clock = pg.time.Clock()
- 
+  	
+playerCar = Car(BLUE, 20, 30)
+
+playerCar.rect.x = 200
+playerCar.rect.y = 300
+	
+player1Car = Car(BLACK, 20, 30)
+player1Car.rect.x = 200
+player1Car.rect.y = 300
+
+
+player2Car = Car(WHITE, 20, 30)
+player2Car.rect.x = 400
+player2Car.rect.y = 400
+
 # -------- Main Program Loop -----------
 while carryOn:
     # --- Main event loop
