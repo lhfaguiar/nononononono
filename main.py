@@ -96,6 +96,13 @@ while carryOn:
                 car.changeSpeed(random.randint(50,100))
                 car.repaint(random.choice(colorList))
                 car.rect.y = -200
+	
+        #Check if there is a car collision
+        car_collision_list = pg.sprite.spritecollide(playerCar,all_coming_cars,False)
+        for car in car_collision_list:
+            print("Car crash!")
+            #End Of Game
+            carryOn=False
  
         all_sprites_list.update()
  
