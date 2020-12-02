@@ -37,6 +37,20 @@ while carryOn:
         for event in pg.event.get():
             if event.type==pg.QUIT:
                 carryOn=False
+            elif event.type==pg.KEYDOWN:
+                if event.key==pg.K_x: #Pressing the x Key will quit the game
+                     carryOn=False
+ 
+        keys = pg.key.get_pressed()
+        if keys[pg.K_LEFT]:
+            playerCar.moveLeft(5)
+        if keys[pg.K_RIGHT]:
+            playerCar.moveRight(5)
+        if keys[pg.K_UP]:
+            playerCar.moveUp(5)
+        if keys[pg.K_DOWN]:
+            playerCar.moveDown(5)
+        
                 
         #Game Logic
         all_sprites_list.update()
